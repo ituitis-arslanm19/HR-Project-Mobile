@@ -3,6 +3,12 @@ import 'package:mobile/core/network/network_manager.dart';
 import 'package:mobile/screen/model/turnstile_process.dart';
 import 'package:mobile/screen/service/profile_service.dart';
 import 'package:mobile/screen/service/turnstile_service.dart';
+import 'package:mobile/screen/view/main_view.dart';
+import 'package:mobile/screen/view/qr_view.dart';
+import 'package:mobile/screen/viewModel/qr_view_model.dart';
+
+import 'core/theme/app_theme.dart';
+import 'core/util/size_config.dart';
 
 void main() => runApp(const MyApp());
 
@@ -12,16 +18,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Material App',
+      theme: AppTheme.lightTheme,
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Material App Bar'),
-        ),
-        body: Center(
-          child: Text(TurnstileService(networkManager: NetworkManager())
-              .saveTurnstileProcess()
-              .toString()),
-        ),
+        body: Center(child: MainView()),
       ),
     );
   }

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class AppTheme {
   AppTheme._();
 
-  static final Color _iconColor = Colors.blueAccent.shade200;
+  static final Color _iconColor = Color.fromARGB(255, 101, 148, 3);
   static const Color _lightPrimaryColor = Color.fromARGB(255, 101, 148, 3);
   static const Color _lightPrimaryVariantColor = Color(0xFF546E7A);
   static const Color _lightSecondaryColor = Color.fromARGB(255, 101, 148, 3);
