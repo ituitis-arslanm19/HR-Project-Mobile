@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: AppTheme.lightTheme,
       home: Scaffold(
-        body: Center(child: MainView()),
+        body: MainView(),
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:mobile/core/theme/app_theme.dart';
 import 'package:mobile/screen/view/qr_view.dart';
 import 'package:mobile/screen/viewModel/main_view_model.dart';
 
@@ -10,8 +11,6 @@ class MainView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(body: Observer(builder: (context) {
-      print("rebuildMain");
-
       switch (mainViewModel.bnbIndex) {
         case 0:
           return QrView();
@@ -42,13 +41,13 @@ class MainView extends StatelessWidget {
           ),
         ],
         currentIndex: mainViewModel.bnbIndex,
-        selectedItemColor: Theme.of(context).primaryColor,
+        selectedItemColor: Theme.of(context).colorScheme.primary,
         onTap: _onItemTapped,
       );
     })));
   }
 
   void _onItemTapped(int index) {
-    mainViewModel.setBnbIndex(index);
+    if (index != mainViewModel.bnbIndex) mainViewModel.setBnbIndex(index);
   }
 }

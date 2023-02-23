@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 class AppTheme {
   AppTheme._();
 
-  static final Color _iconColor = Color.fromARGB(255, 101, 148, 3);
-  static const Color _lightPrimaryColor = Color.fromARGB(255, 101, 148, 3);
+  static final Color _iconColor = Color.fromARGB(255, 155, 81, 224);
+  static const Color _lightPrimaryColor = Color.fromARGB(255, 155, 81, 224);
   static const Color _lightPrimaryVariantColor = Color(0xFF546E7A);
-  static const Color _lightSecondaryColor = Color.fromARGB(255, 101, 148, 3);
+  static const Color _lightSecondaryColor = Color.fromARGB(255, 155, 81, 224);
   static const Color _lightOnPrimaryColor = Colors.white;
+  static const Color _lightPrimaryTextColor = Colors.black;
 
   static const Color _darkPrimaryColor = Colors.white24;
   static const Color _darkPrimaryVariantColor = Colors.black;
@@ -56,18 +57,53 @@ class AppTheme {
       dividerTheme: const DividerThemeData(color: Colors.black));
 
   static const TextTheme _lightTextTheme = TextTheme(
-    headline1: _lightScreenHeading1TextStyle,
-  );
+      headlineLarge: _lightScreenHeadingLargeTextStyle,
+      headlineMedium: _lightScreenHeadingMediumTextStyle,
+      headlineSmall: _lightScreenHeadingSmallTextStyle,
+      bodyLarge: _lightScreenBodyLargeTextStyle,
+      bodyMedium: _lightScreenBodyMediumTextStyle,
+      bodySmall: _lightScreenBodySmallTextStyle);
 
   static final TextTheme _darkTextTheme = TextTheme(
-    headline1: _darkScreenHeading1TextStyle,
+    headlineMedium: _darkScreenHeading1TextStyle,
   );
 
-  static const TextStyle _lightScreenHeading1TextStyle = TextStyle(
-      fontWeight: FontWeight.bold,
+  static const TextStyle _lightScreenHeadingLargeTextStyle = TextStyle(
+      fontWeight: FontWeight.w700,
+      color: _lightPrimaryTextColor,
+      fontSize: 40,
+      fontFamily: "OpenSans");
+
+  static const TextStyle _lightScreenHeadingMediumTextStyle = TextStyle(
+      fontWeight: FontWeight.w700,
+      color: _lightPrimaryTextColor,
+      fontSize: 24,
+      fontFamily: "OpenSans");
+
+  static const TextStyle _lightScreenHeadingSmallTextStyle = TextStyle(
+      fontWeight: FontWeight.w700,
+      color: _lightPrimaryTextColor,
+      fontSize: 18,
+      fontFamily: "OpenSans");
+
+  static const TextStyle _lightScreenBodyLargeTextStyle = TextStyle(
+      fontWeight: FontWeight.w500,
       color: _lightOnPrimaryColor,
+      fontSize: 40,
+      fontFamily: "OpenSans");
+
+  static const TextStyle _lightScreenBodyMediumTextStyle = TextStyle(
+      fontWeight: FontWeight.w500,
+      color: _lightOnPrimaryColor,
+      fontSize: 24,
+      fontFamily: "OpenSans");
+
+  static const TextStyle _lightScreenBodySmallTextStyle = TextStyle(
+      fontWeight: FontWeight.w500,
+      color: _lightOnPrimaryColor,
+      fontSize: 18,
       fontFamily: "OpenSans");
 
   static final TextStyle _darkScreenHeading1TextStyle =
-      _lightScreenHeading1TextStyle.copyWith(color: _darkOnPrimaryColor);
+      _lightScreenHeadingMediumTextStyle.copyWith(color: _darkOnPrimaryColor);
 }

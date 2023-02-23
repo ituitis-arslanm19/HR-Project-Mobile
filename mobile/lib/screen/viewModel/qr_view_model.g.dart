@@ -41,6 +41,22 @@ mixin _$QrViewModel on _QrViewModelBase, Store {
     });
   }
 
+  late final _$countDownAtom =
+      Atom(name: '_QrViewModelBase.countDown', context: context);
+
+  @override
+  int get countDown {
+    _$countDownAtom.reportRead();
+    return super.countDown;
+  }
+
+  @override
+  set countDown(int value) {
+    _$countDownAtom.reportWrite(value, super.countDown, () {
+      super.countDown = value;
+    });
+  }
+
   late final _$initAsyncAction =
       AsyncAction('_QrViewModelBase.init', context: context);
 
@@ -49,11 +65,37 @@ mixin _$QrViewModel on _QrViewModelBase, Store {
     return _$initAsyncAction.run(() => super.init());
   }
 
+  late final _$_QrViewModelBaseActionController =
+      ActionController(name: '_QrViewModelBase', context: context);
+
+  @override
+  void setCountDown() {
+    final _$actionInfo = _$_QrViewModelBaseActionController.startAction(
+        name: '_QrViewModelBase.setCountDown');
+    try {
+      return super.setCountDown();
+    } finally {
+      _$_QrViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void repeatProcess() {
+    final _$actionInfo = _$_QrViewModelBaseActionController.startAction(
+        name: '_QrViewModelBase.repeatProcess');
+    try {
+      return super.repeatProcess();
+    } finally {
+      _$_QrViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
 dataState: ${dataState},
-result: ${result}
+result: ${result},
+countDown: ${countDown}
     ''';
   }
 }
