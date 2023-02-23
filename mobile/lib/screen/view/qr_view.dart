@@ -24,52 +24,69 @@ class QrView extends StatelessWidget {
       padding: EdgeInsets.all(SizeConfig.blockSizeVertical * 5),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Observer(builder: (context) {
-            switch (qrViewModel.dataState) {
-              case DataState.LOADING:
-                return const Center(child: CircularProgressIndicator());
-
-              case DataState.READY:
-                return Column(
-                  children: [
-                    Text(qrViewModel.countDown.toString() + " sn",
-                        style: AppTheme.lightTheme.textTheme.headlineLarge),
-                    Padding(
-                      padding: EdgeInsets.only(
-                          top: SizeConfig.blockSizeVertical * 4),
-                      child: QrImage(data: qrViewModel.result!.data!),
-                    ),
-                  ],
-                );
-
-              case DataState.ERROR:
-                return const Text("Beklenmeyen bir hata meydana geldi.");
-
-              default:
-                return const CircularProgressIndicator();
-            }
-          }),
-          Text(
-            "Lütfen QR kodu tarayıcıya gösteriniz",
-            style: AppTheme.lightTheme.textTheme.headlineMedium,
-            textAlign: TextAlign.center,
-          ),
-          Container(
-            width: SizeConfig.screenWidth * 0.8,
-            height: SizeConfig.screenWidth * 0.11,
-            child: ElevatedButton(
-                onPressed: qrViewModel.repeatProcess,
-                child: Text(
-                  "YENI QR KOD AL",
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodySmall!
-                      .copyWith(fontWeight: FontWeight.w900),
-                )),
-          )
-        ],
+        children: [buildQrCode(), buildInfoText(), buildButton(context)],
       ),
+    );
+  }
+
+  Container buildQrCode() {
+    return Container(
+      height: SizeConfig.blockSizeVertical * 50,
+      child: Observer(builder: (context) {
+        switch (qrViewModel.dataState) {
+          case DataState.LOADING:
+            return const Center(child: CircularProgressIndicator());
+
+          case DataState.READY:
+            return Column(
+              children: [
+                Text(qrViewModel.countDown.toString() + " sn",
+                    style: AppTheme.lightTheme.textTheme.headlineLarge),
+                Padding(
+                  padding:
+                      EdgeInsets.only(top: SizeConfig.blockSizeVertical * 4),
+                  child: QrImage(data: qrViewModel.result!.data!),
+                ),
+              ],
+            );
+
+          case DataState.ERROR:
+            return Center(
+              child: Text(
+                "Beklenmeyen bir hata meydana geldi.",
+                style: Theme.of(context).textTheme.headlineMedium,
+                textAlign: TextAlign.center,
+              ),
+            );
+
+          default:
+            return const CircularProgressIndicator();
+        }
+      }),
+    );
+  }
+
+  Text buildInfoText() {
+    return Text(
+      "Lütfen QR kodu tarayıcıya gösteriniz",
+      style: AppTheme.lightTheme.textTheme.headlineMedium,
+      textAlign: TextAlign.center,
+    );
+  }
+
+  Container buildButton(BuildContext context) {
+    return Container(
+      width: SizeConfig.screenWidth * 0.8,
+      height: SizeConfig.screenWidth * 0.11,
+      child: ElevatedButton(
+          onPressed: qrViewModel.repeatProcess,
+          child: Text(
+            "YENI QR KOD AL",
+            style: Theme.of(context)
+                .textTheme
+                .bodySmall!
+                .copyWith(fontWeight: FontWeight.w900),
+          )),
     );
   }
 }

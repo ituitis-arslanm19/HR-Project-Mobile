@@ -6,25 +6,35 @@ import 'package:http/http.dart' as http;
 import 'package:mobile/core/network/model/response_model.dart';
 
 class NetworkManager {
-  Future<ResponseModel<R>> postData<R, T>(
+  Future<ResponseModel<R>>? postData<R, T>(
       String url, BaseModel<T> baseModel, String? data, String? token) async {
-    var res =
-        await http.post(Uri.parse(url), body: data, headers: <String, String>{
-      'Authorization': token ?? "",
-    });
-    ResponseModel<R> result = handleResponse(res, baseModel);
+    Response res;
 
-    return result;
+    try {
+      res =
+          await http.post(Uri.parse(url), body: data, headers: <String, String>{
+        'Authorization': token ?? "",
+      });
+      return handleResponse(res, baseModel);
+    } catch (e) {
+      print(e);
+    }
+    return ResponseModel<R>();
   }
 
   Future<ResponseModel<R>> getData<R, T>(
       String url, BaseModel<T> baseModel, String? token) async {
-    var res = await http.get(Uri.parse(url), headers: <String, String>{
-      'Authorization': token ?? "",
-    });
-    ResponseModel<R> result = handleResponse(res, baseModel);
+    Response res;
+    try {
+      res = await http.get(Uri.parse(url), headers: <String, String>{
+        'Authorization': token ?? "",
+      });
+      return handleResponse(res, baseModel);
+    } catch (e) {
+      print(e);
+    }
 
-    return result;
+    return ResponseModel<R>();
   }
 
   ResponseModel<R> handleResponse<R, T>(Response res, BaseModel<T> baseModel) {
