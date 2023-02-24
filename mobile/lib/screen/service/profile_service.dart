@@ -10,10 +10,10 @@ class ProfileService {
     required this.networkManager,
   });
 
-  Future<Employee?> saveEmployee() async {
+  Future<Employee?> getEmployee(String username) async {
     ResponseModel<Employee> result =
         await networkManager.getData<Employee, Employee>(
-            "http://localhost:3000/employee", Employee(), null);
+            "http://localhost:3000/employee?$username", Employee(), null);
     return result.data;
   }
 

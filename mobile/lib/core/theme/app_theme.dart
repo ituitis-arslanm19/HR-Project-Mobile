@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class AppTheme {
   AppTheme._();
 
-  static final Color _iconColor = Color.fromARGB(255, 155, 81, 224);
-  static const Color _lightPrimaryColor = Color.fromARGB(255, 155, 81, 224);
+  static final Color _iconColor = Color.fromARGB(255, 43, 38, 77);
+  static const Color _lightPrimaryColor = Color.fromARGB(255, 69, 55, 161);
   static const Color _lightPrimaryVariantColor = Color(0xFF546E7A);
   static const Color _lightSecondaryColor = Color.fromARGB(255, 155, 81, 224);
   static const Color _lightOnPrimaryColor = Colors.white;
@@ -88,19 +88,19 @@ class AppTheme {
 
   static const TextStyle _lightScreenBodyLargeTextStyle = TextStyle(
       fontWeight: FontWeight.w500,
-      color: _lightOnPrimaryColor,
+      color: _lightPrimaryTextColor,
       fontSize: 40,
       fontFamily: "OpenSans");
 
   static const TextStyle _lightScreenBodyMediumTextStyle = TextStyle(
       fontWeight: FontWeight.w500,
-      color: _lightOnPrimaryColor,
+      color: _lightPrimaryTextColor,
       fontSize: 24,
       fontFamily: "OpenSans");
 
   static const TextStyle _lightScreenBodySmallTextStyle = TextStyle(
       fontWeight: FontWeight.w500,
-      color: _lightOnPrimaryColor,
+      color: _lightPrimaryTextColor,
       fontSize: 18,
       fontFamily: "OpenSans");
 

@@ -30,12 +30,11 @@ abstract class _QrViewModelBase extends BaseViewModel with Store {
   @action
   Future<void> init() async {
     countDown = 30;
-    Qr? qr = await qrService.getQr();
+    result = await qrService.getQr();
 
-    if (qr == null || qr.data == null) {
+    if (result == null || result!.data == null) {
       dataState = DataState.ERROR;
     } else {
-      result = qr;
       countdownTimer =
           Timer.periodic(Duration(seconds: 1), (_) => setCountDown());
       dataState = DataState.READY;
@@ -52,7 +51,8 @@ abstract class _QrViewModelBase extends BaseViewModel with Store {
 
   @action
   void repeatProcess() {
-    countdownTimer!.cancel();
+    if (countdownTimer != null) countdownTimer!.cancel();
+
     dataState = DataState.LOADING;
     init();
   }

@@ -1,3 +1,5 @@
 Exception Handling - Network Manager
 Responsive Text Size - Size Config
 Button Theme - App Theme
+Size Config init - Bir kere çağrılması yetiyor mu ?
+View Model - Global bölgede oluşturmak doğru mu ?

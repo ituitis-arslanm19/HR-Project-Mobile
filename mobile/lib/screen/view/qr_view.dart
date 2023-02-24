@@ -82,10 +82,9 @@ class QrView extends StatelessWidget {
           onPressed: qrViewModel.repeatProcess,
           child: Text(
             "YENI QR KOD AL",
-            style: Theme.of(context)
-                .textTheme
-                .bodySmall!
-                .copyWith(fontWeight: FontWeight.w900),
+            style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                fontWeight: FontWeight.w900,
+                color: Theme.of(context).colorScheme.onPrimary),
           )),
     );
   }
